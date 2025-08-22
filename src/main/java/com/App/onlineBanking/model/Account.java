@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -31,6 +34,9 @@ public class Account {
 
     @JsonProperty("branch_name")
     private String branchName;
+
+    @OneToMany(mappedBy = "account" , cascade = CascadeType.ALL ,orphanRemoval = true)
+    private List<PaymentHistory> historyList = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "customer_id")

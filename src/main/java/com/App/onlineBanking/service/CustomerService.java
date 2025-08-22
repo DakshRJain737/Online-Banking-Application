@@ -2,7 +2,7 @@ package com.App.onlineBanking.service;
 
 import com.App.onlineBanking.model.Account;
 import com.App.onlineBanking.model.Customer;
-import com.App.onlineBanking.repo.CustomerRegistrationRepo;
+import com.App.onlineBanking.repo.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class CustomerRegistrationService {
+public class CustomerService {
     
     @Autowired
-    CustomerRegistrationRepo repo;
+    CustomerRepo repo;
 
 
     public ResponseEntity<String> registration(Customer customer) {
@@ -57,6 +57,7 @@ public class CustomerRegistrationService {
         account.setAccountType(generateAccountType());
 
         existing.setAccount(account);
+        account.setCustomer(existing);
 
         repo.save(existing);
 

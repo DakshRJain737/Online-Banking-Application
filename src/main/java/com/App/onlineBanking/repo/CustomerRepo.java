@@ -9,12 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CustomerRegistrationRepo extends JpaRepository<Customer, Integer> {
+public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
     Optional<Customer> findByPan(String pan);
 
     @Query(value = "SELECT c from Customer c where c.account.accountNumber = :accountNumber")
     Optional<Customer> findByAccountNumber(@Param("accountNumber") String accNumber);
 
-//    Optional<Customer> findByAccountNumber(String accountNumber);
 }

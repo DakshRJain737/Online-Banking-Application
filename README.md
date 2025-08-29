@@ -3,12 +3,12 @@
 # Pending Work
 
 1.  Authentication & Security – login, password hashing, JWT/session.
-
+    (After registering not able to update profile and login. Check SecurityConfig  )
 
 1. Input Validation – ensure amounts, dates, PAN, etc., are valid.
 
 
-2. Frontend Integration – connect APIs with UI.
+2. Frontend Integration – connect APIs with UI
 
 
 2. Transaction Safety – concurrency, rollback on failures.

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserDetailsService {
+public  class UsersDetailsService {
 
     @Autowired
     private CustomerRepo repo;
@@ -20,11 +20,10 @@ public class UserDetailsService {
 
         Optional<Customer> customer = repo.findByPan(pan);
 
-        if(customer.isEmpty()){
+        if (customer.isEmpty()) {
 
             return new ResponseEntity<>("No Account found ", HttpStatus.NOT_FOUND);
-        }
-        else{
+        } else {
 
             UserDetails data = new UserDetails(
                     customer.get().getCustomerName(),
@@ -40,7 +39,7 @@ public class UserDetailsService {
                     customer.get().getAccount().getBranchName()
             );
 
-            return new ResponseEntity<>(data,HttpStatus.OK);
+            return new ResponseEntity<>(data, HttpStatus.OK);
         }
 
     }

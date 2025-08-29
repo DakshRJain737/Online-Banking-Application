@@ -1,11 +1,13 @@
 package com.App.onlineBanking.service;
 
+import com.App.onlineBanking.config.SecurityConfig;
 import com.App.onlineBanking.model.Account;
 import com.App.onlineBanking.model.Customer;
 import com.App.onlineBanking.repo.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,6 +18,9 @@ public class CustomerService {
     @Autowired
     CustomerRepo repo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public ResponseEntity<String> registration(Customer customer) {
 
@@ -23,6 +28,7 @@ public class CustomerService {
             return new ResponseEntity<>("User Already exists", HttpStatus.CONFLICT);
         }
         else{
+            customer.setPassword(passwordEncoder.encode(customer.getPassword()));
             repo.save(customer);
             return new ResponseEntity<>("Registration Success", HttpStatus.CREATED);
         }

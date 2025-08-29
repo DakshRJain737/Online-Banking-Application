@@ -11,9 +11,5 @@
 
 2. Transaction Safety – concurrency, rollback on failures.
 
-# Priority List
 
-1 - Do it first
-
-2 - Do later
 

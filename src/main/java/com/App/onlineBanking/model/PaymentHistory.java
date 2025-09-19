@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -19,14 +20,14 @@ public class PaymentHistory {
     private String fromAccNo;
     private String toAccNo;
     private double amount;
-    private Date date;
+    private LocalDateTime date;
     private String result;
 
     @ManyToOne
     @JoinColumn(name = "account_id" , nullable = false)  // foreign key in payment_history table
     private Account account;
 
-    public PaymentHistory(String fromAccNo, String toAccNo, double amount, Date date, String result) {
+    public PaymentHistory(String fromAccNo, String toAccNo, double amount, LocalDateTime date, String result) {
         this.fromAccNo = fromAccNo;
         this.toAccNo = toAccNo;
         this.amount = amount;

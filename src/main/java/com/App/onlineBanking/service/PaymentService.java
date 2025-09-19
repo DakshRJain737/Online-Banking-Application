@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class PaymentService {
     public ResponseEntity<String> processPayment(String fromAccNo,
                                                  String toAccNo,
                                                  double amount,
-                                                 Date date) {
+                                                 LocalDateTime date) {
 
         Optional<Customer> fromCustomer = repo.findByAccountNumber(fromAccNo);
         Optional<Customer> toCustomer = repo.findByAccountNumber(toAccNo);

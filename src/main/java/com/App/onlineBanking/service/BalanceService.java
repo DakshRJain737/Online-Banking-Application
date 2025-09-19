@@ -15,9 +15,9 @@ public class BalanceService {
     @Autowired
     private CustomerRepo repo;
 
-    public ResponseEntity<Double> checkBalance(String accNo) {
+    public ResponseEntity<Double> checkBalance(String pan) {
 
-        Optional<Customer> customer = repo.findByAccountNumber(accNo);
+        Optional<Customer> customer = repo.findByPan(pan);
 
         if (customer.isEmpty()) {
             return new ResponseEntity<>(0.00,HttpStatus.NOT_FOUND);

@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
          return org.springframework.security.core.userdetails.User
                  .withUsername(customer.getPan()) // PAN = username
                  .password(customer.getPassword()) // already encoded
-                 .roles("USER") // default role
+                 .roles(customer.getRoles().toArray(new String[0])) // default role
                  .build();
     }
 }

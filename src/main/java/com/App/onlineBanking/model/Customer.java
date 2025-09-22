@@ -9,7 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -61,5 +63,7 @@ public class Customer {
     //Account Details
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Account account;
+
+    private List<String> roles = new ArrayList<>();
 
 }

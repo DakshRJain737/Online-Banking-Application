@@ -29,6 +29,7 @@ public class SecurityConfig extends Exception {
                 .csrf(c -> c.disable())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/register").permitAll()
+                        .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session ->

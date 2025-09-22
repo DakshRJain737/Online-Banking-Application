@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +30,7 @@ public class CustomerService {
         }
         else{
             customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+            customer.setRoles(Arrays.asList("USER"));
             repo.save(customer);
             return new ResponseEntity<>("Registration Success", HttpStatus.CREATED);
         }
@@ -86,6 +89,18 @@ public class CustomerService {
         } while (repo.findByAccountNumber(accNumber).isPresent());
         return accNumber;
     }
+
+    public List<Customer> getAllCustomers(){
+        return repo.findAll();
+    }
+
+    public void createAdmin(Customer customer) {
+            customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+            customer.setRoles(Arrays.asList("ADMIN","USER"));
+            repo.save(customer);
+    }
+
+
 }
 
 

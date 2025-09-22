@@ -11,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -23,6 +25,7 @@ public class CustomerController {
     @PostMapping("/register")
     public ResponseEntity<String> registration(@Valid @RequestBody Customer customer){
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        customer.setRoles(Arrays.asList("User"));
         return service.registration(customer);
 
     }
